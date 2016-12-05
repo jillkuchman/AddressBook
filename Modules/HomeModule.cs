@@ -1,6 +1,6 @@
 using Nancy;
-using AddressBook.Objects;
 using System.Collections.Generic;
+using AddressBook.Objects;
 
 namespace AddressBook
 {
@@ -8,9 +8,14 @@ namespace AddressBook
   {
     public HomeModule()
     {
-      Get["/"] = _ => {
-        return View["index.cshtml"];
+      Get["/"] = _ =>
+      {
+        List<Contact> allContacts = Contact.DisplayAll();
+
+        return View["index.cshtml", allContacts];
       };
+
+      Get["/deleteAll"] = _ =>
 
     }
   }
