@@ -26,7 +26,15 @@ namespace AddressBook
         return View["add_contact.cshtml"];
       };
       Post["/new"] = _ =>
-      
+      {
+        Contact newContact = new Contact ( Request.Form["firstN"], Request.Form["lastN"], Request.Form["phone"], Request.Form["address"]);
+        return View["new_contact.cshtml", newContact];
+      };
+      Get["/see/{id}"] = parameters =>
+      {
+        Contact aContact = Contact.Find(parameters.id);
+        return View["see_contact.cshtml", aContact ];
+      };
     }
   }
 }
